@@ -10,6 +10,17 @@ A **NestJS backend module** that implements API rate limiting using Redis and pr
 - Docker Compose setup for fast launch of required services.
 - Integration with Prisma ORM for PostgreSQL database access.
 
+## API Endpoints
+
+| Method | Route        | Description                                  |
+|--------|-------------|----------------------------------------------|
+| GET    | /tasks      | Fetch all tasks                              |
+| POST   | /tasks      | Create new tasks (via Postman or `/create`)  |
+| GET    | /create     | Render HTML form to create new tasks         |
+| GET    | /health     | Health check for Redis and Postgres DB       |
+
+- Rate limiting is automatically enforced via Redis for all routes.
+
 ## Installation
 
 1. **Clone the repository:**
@@ -47,16 +58,6 @@ npx prisma studio
 
 Access it at [http://localhost:5555](http://localhost:5555)
 
-## API Endpoints
-
-| Method | Route        | Description                                  |
-|--------|-------------|----------------------------------------------|
-| GET    | /tasks      | Fetch all tasks                              |
-| POST   | /tasks      | Create new tasks (via Postman or `/create`)  |
-| GET    | /create     | Render HTML form to create new tasks         |
-| GET    | /health     | Health check for Redis and Postgres DB       |
-
-- Rate limiting is automatically enforced via Redis for all routes.
 
 ## Usage Notes
 
