@@ -1,18 +1,85 @@
-# Rate Limiter Using Redis
+# RateLimiter-Redis-Nestjs
 
-Install the required packages from package.json and set up the .env file based on the example env file.
+A **NestJS backend module** that implements API rate limiting using Redis and provides a `/health` endpoint to check uptime. This project demonstrates setting up a distributed rate limiter using Redis and includes simple task routes backed by a PostgreSQL database.
 
-The username and password will be the same as the postgres setup in the docker compose file.
+## Features
 
-After package installations run the command "docker compose up" to get the redis and postgres Image running
+- Distributed rate limiting with Redis for high scalability.
+- `/health` endpoint for live system checks (Redis and PostgreSQL).
+- RESTful API with endpoints for task management.
+- Docker Compose setup for fast launch of required services.
+- Integration with Prisma ORM for PostgreSQL database access.
 
-Run command "npm run start:dev" to start the server
+## Installation
 
-Run command "npx prisma studio" to see the db hosted on localhost:5555
+1. **Clone the repository:**
+   
+git clone https://github.com/AliShinde/RateLimiter-Redis-Nestjs.git
 
-## Routes
-Get /tasks -> Will fetch all tasks
+cd RateLimiter-Redis-Nestjs
 
-Post /tasks -> Will create new tasks. Can be accessed via postman or go to Get /create to get a Form to create new tasks
+3. **Install dependencies:**
+   
+npm install
 
-Get /health will return the health check for redis and db
+
+## Configuration
+
+Copy the example `.env` file and fill in any necessary secrets (user/password should match your postgres setup in `docker-compose.yml`):
+
+cp .env.example .env
+
+
+- Configure your PostgreSQL and Redis settings using the environment variables as shown in the `.env.example` file.
+
+## Running the Application
+
+1. **Start Redis and Postgres with Docker Compose:**
+docker compose up
+
+
+2. **Start the server in development mode:**
+npm run start:dev
+
+
+3. **Launch Prisma Studio to view the database:**
+npx prisma studio
+
+Access it at [http://localhost:5555](http://localhost:5555)
+
+## API Endpoints
+
+| Method | Route        | Description                                  |
+|--------|-------------|----------------------------------------------|
+| GET    | /tasks      | Fetch all tasks                              |
+| POST   | /tasks      | Create new tasks (via Postman or `/create`)  |
+| GET    | /create     | Render HTML form to create new tasks         |
+| GET    | /health     | Health check for Redis and Postgres DB       |
+
+- Rate limiting is automatically enforced via Redis for all routes.
+
+## Usage Notes
+
+- Use Postman or the provided HTML form (`/create`) to add new tasks.
+- Uptime and health of both Redis and DB can be verified via the `/health` endpoint.
+
+## Dependencies
+
+- [NestJS](https://nestjs.com/)
+- [Redis](https://redis.io/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Prisma ORM](https://www.prisma.io/)
+
+## License
+
+MIT
+
+## Author
+
+Ali Shinde
+
+---
+
+**Getting Started Has Never Been Easier:**  
+With Docker Compose, all dependencies (Postgres and Redis) are launched with a single command, streamlining both local development and testing.
+
